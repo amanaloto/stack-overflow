@@ -1,0 +1,39 @@
+= flash[:notice]
+
+<div class="page-header">
+  <h1><strong>Stack Overflow</strong><small>List of Questions</small><h1>
+</div>
+
+<table class="table">
+    <tr>
+      <th>Asker</th>
+      <th>Title</th>
+      <th>Question</th>
+      <th>Points</th>
+      <th></th>
+    </tr>
+
+  <% @questions.each do |question| %>
+    <tr>
+      <td><%= question.name %></td>
+      <td><%= question.title %></td>
+      <td><%= question.question %></td>
+      <td><%= question.points %></td>
+
+      <div class="btn-group btn-group-justified">
+        <td><%= button_to 'Show', question ,:method => :get, :class => "btn btn-primary" %></td>
+
+        <% if !session[:user_id].nil? %>
+        <td><%= button_to 'Edit', edit_question_path(question), :method => :get, :class => "btn btn-warning"  %></td>
+        <td><%= button_to 'Delete', question_path(question), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-danger" %></td>
+        <% end %>
+      </div>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<% if !session[:user_id].nil? %>
+  <%= button_to 'Ask a Question', new_question_path, :method => :get, :class => "btn btn-success center-block" %>
+<% end %>

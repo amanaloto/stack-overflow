@@ -1,32 +1,29 @@
-<p>
-	<b>Name:</b>
-	<%= answer.name %>
-</p>
+<h3><%= @count %></h3>
 
-<p>
-	<b>Answer:</b>
-	<%= answer.answer %>
-</p>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<p class="lead"><%= answer.answer %></p>
+		<small><%= answer.name %></small>
 
-<p>
-	<b>Points:</b>
-	<%= answer.points %>
+		<b>Points:</b>
+		<%= answer.points %>
 
-<% if !session[:user_id].nil? %>
-	<b><%= link_to '+', votes_up_path(:type => "answer", :id => answer.id, :question_id => @question.id) %></b>
-	<b><%= link_to '-', votes_down_path(:type => "answer", :id => answer.id, :question_id => @question.id) %></b>
-</p>
+		<% if !session[:user_id].nil? %>
+			<%= link_to '+', votes_up_path(:type => "answer", :id => answer.id, :question_id => @question.id) %>
+			<%= link_to '-', votes_down_path(:type => "answer", :id => answer.id, :question_id => @question.id) %>
+	</div>
+</div>
 
-<p>
-	<%= link_to "Delete Answer", [answer.question, answer],
+<%= link_to "Delete Answer", [answer.question, answer],
 				:confirm => "Are you sure?",
 				:method => :delete %>
-</p>
-<% end %>
-
-<h3>Replies</h3>
-<%= render answer.comments %>
+<% end %> |
 
 <% if !session[:user_id].nil? %>
 	<%= link_to 'Reply', new_question_answer_comment_path(answer.question, answer) %><br>
 <% end %>
+
+<h4>Replies</h4>
+<%= render answer.comments %>
+
+<% @count += 1%>

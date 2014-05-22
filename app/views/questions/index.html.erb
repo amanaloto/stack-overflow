@@ -1,36 +1,39 @@
 <%= flash[:notice] %>
 
-<h1>Stack Overflow</h1>
-<br>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      Questions
+    </h2>
+  </div>
+  <table class="table">
+    <tr>
+      <th>Asker</th>
+      <th>Title</th>
+      <th>Question</th>
+      <th>Points</th>
+      <th></th>
+    </tr>
 
-<h2>List of Questions:</h2>
+  <% @questions.each do |question| %>
+    <tr>
+      <td><%= question.name %></td>
+      <td><%= question.title %></td>
+      <td><%= question.question %></td>
+      <td><%= question.points %></td>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Title</th>
-    <th>Question</th>
-    <th>Points</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <div class="btn-group btn-group-justified">
+        <td><%= button_to 'Show', question ,:method => :get, :class => "btn btn-primary" %></td>
 
-<% @questions.each do |question| %>
-  <tr>
-    <td><%= question.name %></td>
-    <td><%= question.title %></td>
-    <td><%= question.question %></td>
-    <td><%= question.points %></td>
-    <td><%= link_to 'Show', question %></td>
-
-    <% if !session[:user_id].nil? %>
-    <td><%= link_to 'Edit', edit_question_path(question)  %></td>
-    <td><%= link_to 'Delete', question_path(question), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
+        <% if !session[:user_id].nil? %>
+        <td><%= button_to 'Edit', edit_question_path(question), :method => :get, :class => "btn btn-warning"  %></td>
+        <td><%= button_to 'Delete', question_path(question), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-danger" %></td>
+        <% end %>
+      </div>
+    </tr>
+  <% end %>
+  </table>
+</div>
 
 <br />
 

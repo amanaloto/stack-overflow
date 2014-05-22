@@ -1,12 +1,10 @@
 <%= flash[:notice] %>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h2 class="panel-title">
-      Questions
-    </h2>
-  </div>
-  <table class="table">
+<div class="page-header">
+  <h1>Stack Overflow <small>List of Questions</small><h1>
+</div>
+
+<table class="table">
     <tr>
       <th>Asker</th>
       <th>Title</th>
@@ -32,11 +30,10 @@
       </div>
     </tr>
   <% end %>
-  </table>
-</div>
+</table>
 
 <br />
 
 <% if !session[:user_id].nil? %>
-  <%= link_to 'New Question', new_question_path %>
+  <%= button_to 'Ask a Question', new_question_path, :method => :get, :class => "btn btn-success center-block" %>
 <% end %>

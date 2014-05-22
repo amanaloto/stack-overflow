@@ -2,13 +2,7 @@
 
 <div class="container">
   <div class="jumbotron">
-    <h1><%= @question.title %></h1>
-    <blockquote>
-      <p><%= @question.question %></p>
-      <small><cite><%= @question.name %></cite></small>
-    </blockquote>
-
-    <h3>
+    <h2>
       <span class="label label-default">
         <%= @question.points %>
         <% if !session[:user_id].nil? %>
@@ -16,12 +10,21 @@
         <%= link_to '-', votes_down_path(:type => "question", :id => @question.id, :question_id => @question.id) %>
         <% end %>
       </span>
-    </h3>
+    </h2>
+
+    <h1><%= @question.title %></h1>
+
+    <blockquote>
+      <p class="text-justify"><%= @question.question %>
+      <small><cite><%= @question.name %></cite></small></p>
+    </blockquote>
   </div>
 
   <h2>Answers:</h2>
-  <% @count=1 %>
-  <%= render @question.answers %>
+  <div class="container">
+    <% @count=1 %>
+    <%= render @question.answers %>
+  </div>
 
   <br>
   <% if !session[:user_id].nil? %>

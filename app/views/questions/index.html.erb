@@ -1,0 +1,39 @@
+<%= flash[:notice] %>
+
+<h1>Stack Overflow</h1>
+<br>
+
+<h2>List of Questions:</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Question</th>
+    <th>Points</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @questions.each do |question| %>
+  <tr>
+    <td><%= question.name %></td>
+    <td><%= question.title %></td>
+    <td><%= question.question %></td>
+    <td><%= question.points %></td>
+    <td><%= link_to 'Show', question %></td>
+
+    <% if !session[:user_id].nil? %>
+    <td><%= link_to 'Edit', edit_question_path(question)  %></td>
+    <td><%= link_to 'Delete', question_path(question), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if !session[:user_id].nil? %>
+  <%= link_to 'New Question', new_question_path %>
+<% end %>

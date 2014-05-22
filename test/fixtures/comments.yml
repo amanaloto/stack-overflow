@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  comment: MyText
+  points: 9.99
+  answer: 
+
+two:
+  name: MyString
+  comment: MyText
+  points: 9.99
+  answer: 

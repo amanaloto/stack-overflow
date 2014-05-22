@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Question:</h2>
+<p>
+  <b>Name:</b>
+  <%= @question.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @question.title %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= @question.question %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%= @question.points %>
+  <% if !session[:user_id].nil? %>
+  <b><%= link_to '+', votes_up_path(:type => "question", :id => @question.id, :question_id => @question.id) %></b>
+  <b><%= link_to '-', votes_down_path(:type => "question", :id => @question.id, :question_id => @question.id) %></b>
+  <% end %>
+</p>
+
+<h2>Answers:</h2>
+<%= render @question.answer %>
+
+<br>
+<% if !session[:user_id].nil? %>
+<%= link_to 'Submit an Answer', new_question_answer_path(@question) %><br />
+<%= link_to 'Edit Question', edit_question_path(@question) %>
+<% end %>
+<%= link_to 'Home', questions_path %>

@@ -1,0 +1,15 @@
+<p>
+  <b><%= comment.points %></b>
+  <% if !session[:user_id].nil? %>
+  <b><%= link_to '+', votes_up_path(:type => "comment", :id => comment.id, :question_id => @question.id) %></b>
+  <b><%= link_to '-', votes_down_path(:type => "comment", :id => comment.id, :question_id => @question.id) %></b>
+  <% end %>
+  "<%= comment.comment %>"
+  -<%= comment.name %>
+
+  <% if !session[:user_id].nil? %>
+  <%= link_to "Delete", [comment.answer, comment],
+				:confirm => "Are you sure?",
+				:method => :delete %>
+	<% end %>
+</p>

@@ -1,0 +1,32 @@
+<p>
+	<b>Name:</b>
+	<%= answer.name %>
+</p>
+
+<p>
+	<b>Answer:</b>
+	<%= answer.answer %>
+</p>
+
+<p>
+	<b>Points:</b>
+	<%= answer.points %>
+
+<% if !session[:user_id].nil? %>
+	<b><%= link_to '+', votes_up_path(:type => "answer", :id => answer.id, :question_id => @question.id) %></b>
+	<b><%= link_to '-', votes_down_path(:type => "answer", :id => answer.id, :question_id => @question.id) %></b>
+</p>
+
+<p>
+	<%= link_to "Delete Answer", [answer.question, answer],
+				:confirm => "Are you sure?",
+				:method => :delete %>
+</p>
+<% end %>
+
+<h3>Replies</h3>
+<%= render answer.comment %>
+
+<% if !session[:user_id].nil? %>
+	<%= link_to 'Reply', new_question_answer_comment_path(answer.question, answer) %><br>
+<% end %>

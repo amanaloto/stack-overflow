@@ -1,4 +1,3 @@
-<h3><%= @count %></h3>
 
 <div class="row">
 	<div class="col-md-4">
@@ -8,18 +7,18 @@
 				<% if !session[:user_id].nil? %>
 					<%= link_to '+', votes_up_path(:type => "answer", :id => answer.id, :question_id => @question.id) %>
 					<%= link_to '-', votes_down_path(:type => "answer", :id => answer.id, :question_id => @question.id) %>
+				<% end %>
 			</span>
 		</h3>
 		<div class="panel-body">
 			<p class="lead"><%= answer.answer %></p>-<%= answer.name %>
 		</div>
 
-		<%= link_to "Delete Answer", [answer.question, answer],
-						:confirm => "Are you sure?",
-						:method => :delete %>
-		<% end %> |
 
 		<% if !session[:user_id].nil? %>
+			<%= link_to "Delete Answer", [answer.question, answer],
+						:confirm => "Are you sure?",
+						:method => :delete %>|
 			<%= link_to 'Reply', new_question_answer_comment_path(answer.question, answer) %><br>
 		<% end %>
 

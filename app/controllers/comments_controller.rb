@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 	def new
 		@question = Question.find(params[:question_id])
-		@answer = @question.answer.find(params[:answer_id])
+		@answer = @question.answers.find(params[:answer_id])
 		@comment = @answer.comments.new
 
 		respond_to do |format|

@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 	def new
 		@question = Question.find(params[:question_id])
 		@answer = @question.answer.find(params[:answer_id])
-		@comment = @answer.comment.new
+		@comment = @answer.comments.new
 
 		respond_to do |format|
 			format.html
@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 		# @question = Question.find(params[:question_id])
 		@answer = Answer.find(params[:answer_id])
 		@question = Question.find(@answer.question_id)
-		@comment = @answer.comment.create(params[:comment])
+		@comment = @answer.comments.create(params[:comment])
 
 		redirect_to question_path(@question)
 	end

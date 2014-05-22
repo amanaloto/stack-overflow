@@ -25,7 +25,7 @@
 <% end %>
 
 <h3>Replies</h3>
-<%= render answer.comment %>
+<%= render answer.comments %>
 
 <% if !session[:user_id].nil? %>
 	<%= link_to 'Reply', new_question_answer_comment_path(answer.question, answer) %><br>

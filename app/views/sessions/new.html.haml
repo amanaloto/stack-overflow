@@ -1,15 +1,18 @@
 = flash[:notice]
-%h1
-	Log in
+.container
+	%h1
+		Log in
 
-= form_tag sessions_path do
-	.field
-		= label_tag :email
-		= text_field_tag :email, params[:email]
-	.field
-		= label_tag :password
-		= password_field_tag :password
-	.actions
-		= submit_tag "Isumite"
-
-= link_to "Home", root_path
+	.row
+		.col-md-4
+			= form_tag sessions_path, {:class => "form-horizontal"} do
+				.control-group
+					= label_tag :email, nil, :class => "control-label"
+					.controls
+						= text_field_tag :email, params[:email], :placeholder => "Email"
+				.control-group
+					= label_tag :password, nil, :class => "control-label"
+					.controls
+						= password_field_tag :password
+				.actions
+					= submit_tag "Isumite"

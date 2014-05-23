@@ -1,26 +1,27 @@
-.panel.panel-info
-	.panel-heading
-		%h2{:class => "panel-title"}
-			Sign Up Form
+.container
+	%h1
+		Sign Up Form
 
-	= form_for @user do |f|
-		- if @user.errors.any?
-			#error_explanation
-				%h2
-					Form is invalid
-				%ul
-					- for message in @user.errors.full_messages
-						%li= message
+	.row
+		.col-md-6
+			= form_for @user do |f|
+				- if @user.errors.any?
+					#error_explanation
+						%h2
+							Form is invalid
+						%ul
+							- for message in @user.errors.full_messages
+								%li= message
 
-		.control-group
-			= f.label :email
-			.controls
-				= f.text_field :email
-			= f.label :password
-			.controls
-				= f.password_field :password
-			= f.label :password_confirmation
-			.controls
-				= f.password_field :password_confirmation
-		.form-actions
-			= f.submit
+				.control-group
+					= f.label :email
+					.controls
+						= f.text_field :email, :placeholder => "dummy@email.com"
+					= f.label :password
+					.controls
+						= f.password_field :password
+					= f.label :password_confirmation
+					.controls
+						= f.password_field :password_confirmation
+				.form-actions
+					= f.submit

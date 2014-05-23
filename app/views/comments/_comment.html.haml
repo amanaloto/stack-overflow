@@ -1,14 +1,12 @@
-%p
-  %strong= comment.points
-  - if !session[:user_id].nil?
-    %strong= link_to '+', votes_up_path(:type => "comment", :id => comment.id, :question_id => @question.id)
-    %strong= link_to '-', votes_down_path(:type => "comment", :id => comment.id, :question_id => @question.id)
+.row
+  .col-md-6
+    %strong= comment.points
+    - if !session[:user_id].nil?
+      %strong= link_to '+', votes_up_path(:type => "comment", :id => comment.id, :question_id => @question.id)
+      %strong= link_to '-', votes_down_path(:type => "comment", :id => comment.id, :question_id => @question.id)
 
-  "
-  = comment.comment
-  "
-  -
-  = comment.name
+    %em "#{comment.comment}"
+    \-#{comment.name}
 
-  - if !session[:user_id].nil?
-    = link_to "Delete", [comment.answer, comment], :confirm => "Are you sure?", :method => :delete
+    - if !session[:user_id].nil?
+      = link_to "Delete", [comment.answer, comment], :confirm => "Are you sure?", :method => :delete

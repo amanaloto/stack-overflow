@@ -1,0 +1,31 @@
+%p{:id => "notice"}= notice
+
+.container
+  .page-header
+    %h2
+      %strong= @question.title
+      %span.label.label-default
+        = @question.points
+        - if !session[:user_id].nil?
+          = link_to '+', votes_up_path(:type => "question", :id => @question.id, :question_id => @question.id)
+          = link_to '-', votes_down_path(:type => "question", :id => @question.id, :question_id => @question.id)
+
+  %p= @question.question
+  %small
+    Asked by:
+    %strong= @question.name
+    = @question.created_at
+
+  - if !session[:user_id].nil?
+    %p{:class => "text-right"}
+      = link_to 'Edit Question', edit_question_path(@question) 
+
+    = button_to 'Submit an Answer', new_question_answer_path(@question), :method => :get, :class => "btn btn-success"
+
+  %h2
+    Answers:
+  .container
+    - @count=1
+    = render @question.answers
+
+  %br

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates_presence_of :password, :on => :create
 
-  has_many :questions
-  has_many :answers
-  has_many :comments
+  has_many :questions, :dependent => :destroy
+  has_many :answers, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 end

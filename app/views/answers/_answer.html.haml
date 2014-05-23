@@ -1,0 +1,24 @@
+.row
+	.col-md-4
+		%h3
+			%span.label.label-default
+				= answer.points
+				- if !session[:user_id].nil?
+					= link_to '+', votes_up_path(:type => "answer", :id => answer.id, :question_id => @question.id)
+					= link_to '-', votes_down_path(:type => "answer", :id => answer.id, :question_id => @question.id)
+		.panel-body
+			%p{:class => "lead"}
+				= answer.answer
+			= answer.name
+
+		- if !session[:user_id].nil?
+			= link_to "Delete Answer", question_answer_path(answer.question, answer), :confirm => "Are you sure?", :method => :delete
+			|
+			= link_to 'Reply', new_question_answer_comment_path(answer.question, answer)
+			%br
+
+		%h4
+			Replies:
+		= render answer.comments
+
+		- @count += 1

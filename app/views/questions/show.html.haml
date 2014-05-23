@@ -5,7 +5,7 @@
     %h2
       %strong= @question.title
       %span.label.label-default
-        = @question.points
+        = question_total_points @question.id
         - if !session[:user_id].nil?
           = link_to '+', votes_up_path(:type => "question", :id => @question.id, :question_id => @question.id)
           = link_to '-', votes_down_path(:type => "question", :id => @question.id, :question_id => @question.id)

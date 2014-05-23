@@ -2,8 +2,11 @@ class VotesController < ApplicationController
   def up
   	@question = Question.find(params[:question_id])
   	if params[:type] == "question"
-  		@question.points += 1
-  		@question.save
+      @vote = VoteQuestion.where(:user_id => session[:user_id], :question_id => params[:question_id]).first
+      if @vote.nil?
+        @vote = VoteQuestion.new(:user_id => session[:user_id], :question_id => params[:question_id], :points => 0)
+      end
+      @vote.update_attribute(:points, 1)
   	elsif params[:type] == "answer"
   		@answer = Answer.find(params[:id])
   		@answer.points += 1
@@ -20,8 +23,11 @@ class VotesController < ApplicationController
   def down
   	@question = Question.find(params[:question_id])
   	if params[:type] == "question"
-  		@question.points -= 1
-  		@question.save
+      @vote = VoteQuestion.where(:user_id => session[:user_id], :question_id => params[:question_id]).first
+      if @vote.nil?
+        @vote = VoteQuestion.new(:user_id => session[:user_id], :question_id => params[:question_id], :points => 0)
+      end
+      @vote.update_attribute(:points, -1)
   	elsif params[:type] == "answer"
   		@answer = Answer.find(params[:id])
   		@answer.points -= 1

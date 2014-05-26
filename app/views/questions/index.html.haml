@@ -16,7 +16,7 @@
       %td= question.name
       %td= question.title
       %td= question.question
-      %td= question.points
+      %td= total_points question.id, "Question"
 
       .btn-group.btn-group-justified
         %td= button_to 'Show', question ,:method => :get, :class => "btn btn-primary"

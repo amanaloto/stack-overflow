@@ -1,9 +1,9 @@
 .row
   .col-md-6
-    %strong= comment.points
+    %strong= total_points comment.id, "Comment"
     - if !session[:user_id].nil?
-      %strong= link_to '+', votes_up_path(:type => "comment", :id => comment.id, :question_id => @question.id)
-      %strong= link_to '-', votes_down_path(:type => "comment", :id => comment.id, :question_id => @question.id)
+      %strong= link_to '+', votes_up_path(:type => "Comment", :id => comment.id, :question_id => @question.id)
+      %strong= link_to '-', votes_down_path(:type => "Comment", :id => comment.id, :question_id => @question.id)
 
     %em "#{comment.comment}"
     \-#{comment.name}

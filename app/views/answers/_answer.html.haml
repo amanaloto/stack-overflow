@@ -5,10 +5,10 @@
 				= answer.answer
 		%h4
 			%span.label.label-default
-				= answer.points
+				= total_points answer.id, "Answer"
 				- if !session[:user_id].nil?
-					= link_to '+', votes_up_path(:type => "answer", :id => answer.id, :question_id => @question.id)
-					= link_to '-', votes_down_path(:type => "answer", :id => answer.id, :question_id => @question.id)
+					= link_to '+', votes_up_path(:type => "Answer", :id => answer.id, :question_id => @question.id)
+					= link_to '-', votes_down_path(:type => "Answer", :id => answer.id, :question_id => @question.id)
 		%p.text-right
 			%small
 				Answered by:

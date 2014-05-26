@@ -11,15 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140523070120) do
+ActiveRecord::Schema.define(:version => 20140526033127) do
 
   create_table "answers", :force => true do |t|
     t.string   "name"
     t.text     "answer"
-    t.integer  "points",      :default => 0
     t.integer  "question_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
   end
 
@@ -29,10 +28,9 @@ ActiveRecord::Schema.define(:version => 20140523070120) do
   create_table "comments", :force => true do |t|
     t.string   "name"
     t.text     "comment"
-    t.integer  "points",     :default => 0
     t.integer  "answer_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
 
@@ -43,9 +41,8 @@ ActiveRecord::Schema.define(:version => 20140523070120) do
     t.string   "name"
     t.string   "title"
     t.text     "question"
-    t.integer  "points",     :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
 
@@ -69,4 +66,18 @@ ActiveRecord::Schema.define(:version => 20140523070120) do
   add_index "vote_questions", ["question_id"], :name => "index_vote_questions_on_question_id"
   add_index "vote_questions", ["user_id"], :name => "index_vote_questions_on_user_id"
 
+<<<<<<< HEAD
+=======
+  create_table "votes", :force => true do |t|
+    t.integer  "points",       :default => 0
+    t.integer  "user_id"
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+
+>>>>>>> vote_model
 end

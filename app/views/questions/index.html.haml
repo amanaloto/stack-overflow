@@ -1,9 +1,11 @@
-= flash[:notice]
+- flash.each do 
+  .alert.alert-success
+    = flash[:notice]
 .page-header
   %h1
     %strong Stack Overflow
     %small List of Questions
-%table{:class => "table"}
+%table{:class => "table table-hover"}
   %tr
     %th Asker
     %th Title

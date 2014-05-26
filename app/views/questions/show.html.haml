@@ -1,5 +1,6 @@
-%p{:id => "notice"}= notice
-
+- flash.each do 
+  .alert.alert-success
+    = flash[:notice]
 .row
   .col-md-7.col-md-offset-1
     %h2
@@ -26,10 +27,12 @@
             %p{:class => "text-right"}
               = link_to 'Edit Question', edit_question_path(@question) 
 
-    = button_to 'Submit an Answer', new_question_answer_path(@question), :method => :get, :class => "btn btn-success center-block"
-
     %h3
       Answers:
 = render @question.answers
+
+.row
+  .col-md-7.col-md-offset-1
+    = button_to 'Submit an Answer', new_question_answer_path(@question), :method => :get, :class => "btn btn-success center-block"
 
 %br

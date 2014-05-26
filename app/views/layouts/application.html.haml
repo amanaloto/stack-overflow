@@ -9,7 +9,7 @@
 
 	%body
 
-	%nav.navbar.navbar-default{:role => "navigation"}
+	%nav.navbar.navbar-inverse{:role => "navigation"}
 		.container-fluid
 		.navbar-header
 			%a.navbar-brand{:href => "#{url_for root_path}"}
@@ -29,5 +29,4 @@
 						= link_to "Log in", log_in_path
 
 	.container
-		.row
-			= yield
+		= yield

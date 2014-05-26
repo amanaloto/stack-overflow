@@ -4,7 +4,8 @@ class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :users
 
-  validates_presence_of :answer, :on => :create
-
   has_many :comments, :dependent => :destroy
+  has_many :votes, :as => :votable, :dependent => :destroy
+  
+  validates_presence_of :answer, :on => :create
 end

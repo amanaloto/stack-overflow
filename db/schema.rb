@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140521064603) do
+ActiveRecord::Schema.define(:version => 20140526021348) do
 
   create_table "answers", :force => true do |t|
     t.string   "name"
@@ -57,5 +57,27 @@ ActiveRecord::Schema.define(:version => 20140521064603) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  create_table "vote_questions", :force => true do |t|
+    t.integer  "points"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "vote_questions", ["question_id"], :name => "index_vote_questions_on_question_id"
+  add_index "vote_questions", ["user_id"], :name => "index_vote_questions_on_user_id"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "points",       :default => 0
+    t.integer  "user_id"
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 
 end

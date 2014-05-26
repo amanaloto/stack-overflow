@@ -3,8 +3,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+  helper_method :current_user, :total_points
+
   def current_user
   	@current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-  helper_method :current_user
+
+  def total_points(id, type)
+    Vote.where(:votable_id => id, :votable_type => type).sum(:points)
+  end
 end

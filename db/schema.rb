@@ -11,15 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140526021348) do
+ActiveRecord::Schema.define(:version => 20140526033127) do
 
   create_table "answers", :force => true do |t|
     t.string   "name"
     t.text     "answer"
-    t.integer  "points",      :default => 0
     t.integer  "question_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
   end
 
@@ -29,10 +28,9 @@ ActiveRecord::Schema.define(:version => 20140526021348) do
   create_table "comments", :force => true do |t|
     t.string   "name"
     t.text     "comment"
-    t.integer  "points",     :default => 0
     t.integer  "answer_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
 
@@ -43,9 +41,8 @@ ActiveRecord::Schema.define(:version => 20140526021348) do
     t.string   "name"
     t.string   "title"
     t.text     "question"
-    t.integer  "points",     :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
 

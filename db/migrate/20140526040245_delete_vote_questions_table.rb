@@ -1,5 +1,9 @@
-class CreateVoteQuestions < ActiveRecord::Migration
-  def change
+class DeleteVoteQuestionsTable < ActiveRecord::Migration
+  def up
+    drop_table :vote_questions
+  end
+
+  def down
     create_table :vote_questions do |t|
       t.integer :points
       t.references :user

@@ -15,6 +15,10 @@ class AnswersController < ApplicationController
 		@question = Question.find(params[:question_id])
 		@answer = @question.answers.find(params[:id])
 		@answer.destroy
-		redirect_to question_path(@question)
+
+		respond_to do |format|
+			format.html { redirect_to question_path(@question)}
+			format.js { render :nothing => true}
+		end
 	end
 end

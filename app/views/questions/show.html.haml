@@ -9,10 +9,11 @@
     %td.col-sm-1
       %h4
         %span.label.label-default
-          = total_points @question.id, "Question"
+          %span.points
+            = total_points @question.id, "Question"
           - if !current_user.nil?
-            = link_to '+', votes_up_path(:type => "Question", :id => @question.id, :question_id => @question.id)
-            = link_to '-', votes_down_path(:type => "Question", :id => @question.id, :question_id => @question.id)
+            = link_to '+', votes_up_path(:type => "Question", :id => @question.id, :question_id => @question.id), :remote => true, :class => "up_vote"
+            = link_to '-', votes_down_path(:type => "Question", :id => @question.id, :question_id => @question.id), :remote => true, :class => "down_vote"
     %td
       = @question.question
       %p.text-right
@@ -31,7 +32,6 @@
 %h3
   Answers:
 = render @question.answers
-
 - if !current_user.nil?
   = button_to 'Submit an Answer', new_question_answer_path(@question), :method => :get, :class => "btn btn-success center-block"
 

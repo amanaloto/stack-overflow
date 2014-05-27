@@ -1,38 +1,38 @@
 - flash.each do 
   .alert.alert-success
     = flash[:notice]
-.row
-  .col-md-7.col-md-offset-1
-    %h2
-      %strong= @question.title
-    %table{:class => "table"}
-      %tr
-        %td.col-sm-1
-          %h4
-            %span.label.label-default
-              = total_points @question.id, "Question"
-              - if !session[:user_id].nil?
-                = link_to '+', votes_up_path(:type => "Question", :id => @question.id, :question_id => @question.id)
-                = link_to '-', votes_down_path(:type => "Question", :id => @question.id, :question_id => @question.id)
-        %td
-          = @question.question
-          %p.text-right
-            %small
-              Asked by:
-              %strong= @question.name
-              on 
-              = @question.created_at
 
-          - if !session[:user_id].nil?
-            %p{:class => "text-right"}
-              = link_to 'Edit Question', edit_question_path(@question) 
+%h2
+  %strong= @question.title
+%table{:class => "table"}
+  %tr
+    %td.col-sm-1
+      %h4
+        %span.label.label-default
+          = total_points @question.id, "Question"
+          - if !current_user.nil?
+            = link_to '+', votes_up_path(:type => "Question", :id => @question.id, :question_id => @question.id)
+            = link_to '-', votes_down_path(:type => "Question", :id => @question.id, :question_id => @question.id)
+    %td
+      = @question.question
+      %p.text-right
+        %small
+          Asked by:
+          %strong= @question.name
+          on 
+          = @question.created_at
 
-    %h3
-      Answers:
+      - if !current_user.nil?
+        %p{:class => "text-right"}
+          = link_to 'Edit Question', edit_question_path(@question)
+          |
+          = link_to 'Delete', question_path(@question), :confirm => "Are you sure?", :method => :delete
+
+%h3
+  Answers:
 = render @question.answers
 
-.row
-  .col-md-7.col-md-offset-1
-    = button_to 'Submit an Answer', new_question_answer_path(@question), :method => :get, :class => "btn btn-success center-block"
+- if !current_user.nil?
+  = button_to 'Submit an Answer', new_question_answer_path(@question), :method => :get, :class => "btn btn-success center-block"
 
 %br

@@ -1,7 +1,7 @@
 %tr
   %td.col-md-1
     %strong= total_points comment.id, "Comment"
-    - if !session[:user_id].nil?
+    - if !current_user.nil?
       %strong= link_to '+', votes_up_path(:type => "Comment", :id => comment.id, :question_id => @question.id)
       %strong= link_to '-', votes_down_path(:type => "Comment", :id => comment.id, :question_id => @question.id)
   %td
@@ -9,5 +9,5 @@
       "#{comment.comment}"
       %strong -#{comment.name}
 
-      - if !session[:user_id].nil?
+      - if !current_user.nil?
         = link_to "Delete", [comment.answer, comment], :confirm => "Are you sure?", :method => :delete

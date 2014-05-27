@@ -1,31 +1,21 @@
 - flash.each do 
   .alert.alert-success
     = flash[:notice]
-.page-header
-  %h1
-    %strong Stack Overflow
-    %small List of Questions
+%h1
+  %small List of Questions
 %table{:class => "table table-hover"}
   %tr
-    %th Asker
-    %th Title
-    %th.col-md-6 Question
     %th Points
-    %th
+    %th Asker
+    %th.col-md-8 Title
 
   - @questions.each do |question|
     %tr
-      %td= question.name
-      %td= question.title
-      %td= question.question
       %td= total_points question.id, "Question"
+      %td= question.name
+      %td= link_to question.title, question
 
-      .btn-group.btn-group-justified
-        %td= button_to 'Show', question ,:method => :get, :class => "btn btn-primary"
-        - if !session[:user_id].nil?
-          %td= button_to 'Edit', edit_question_path(question), :method => :get, :class => "btn btn-warning"
-          %td= button_to 'Delete', question_path(question), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-danger"
 %br/
 
-- if !session[:user_id].nil?
+- if !current_user.nil?
   = button_to 'Ask a Question', new_question_path, :method => :get, :class => "btn btn-success center-block"

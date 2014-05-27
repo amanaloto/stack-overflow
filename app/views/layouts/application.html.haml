@@ -2,7 +2,7 @@
 %html
 	%head
 		%title
-			StackOverflow
+			Stack Overflow
 		= stylesheet_link_tag "application", :media => "all"
 		= javascript_include_tag "application"
 		= csrf_meta_tags
@@ -29,4 +29,7 @@
 						= link_to "Log in", log_in_path
 
 	.container
-		= yield
+		.col-md-7.col-md-offset-1
+			.page-header
+				= image_tag("so-logo.png", :size => "275x80", :alt => "image-header")
+			= yield

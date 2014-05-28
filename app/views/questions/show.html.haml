@@ -4,7 +4,7 @@
 
 %h2
   %strong= @question.title
-%table{:class => "table"}
+%table.table
   %tr
     %td.col-sm-1
       %h4
@@ -23,8 +23,8 @@
           on 
           = @question.created_at
 
-      - if !current_user.nil?
-        %p{:class => "text-right"}
+      - if !current_user.nil? && current_user.id == @question.user_id
+        %p.text-right
           = link_to 'Edit Question', edit_question_path(@question)
           |
           = link_to 'Delete', question_path(@question), :confirm => "Are you sure?", :method => :delete

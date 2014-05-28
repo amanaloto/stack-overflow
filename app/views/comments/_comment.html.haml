@@ -10,5 +10,5 @@
       "#{comment.comment}"
       %strong -#{comment.name}
 
-      - if !current_user.nil?
+      - if !current_user.nil? && current_user.id == comment.user_id
         = link_to "Delete", [comment.answer, comment], :confirm => "Are you sure?", :method => :delete

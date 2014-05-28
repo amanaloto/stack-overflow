@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 		@comment = @answer.comments.new
 
 		respond_to do |format|
-			format.html
+			format.js
 		end
 	end
 
@@ -15,7 +15,9 @@ class CommentsController < ApplicationController
 		@question = Question.find(@answer.question_id)
 		@comment = @answer.comments.create(params[:comment])
 
-		redirect_to question_path(@question)
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def destroy
@@ -24,6 +26,8 @@ class CommentsController < ApplicationController
 		@comment = Comment.find(params[:id]) #not sure if this is safe
 		@comment.destroy
 
-		redirect_to question_path(@question)
+		respond_to do |format|
+			format.js
+		end
 	end
 end

@@ -1,0 +1,4 @@
+$("#new_comment").bind('ajax:success', function(){
+  $(this).closest("tr").next().find(".table-condensed").html("<%= escape_javascript(render Answer.find(params[:answer_id]).comments) %>");
+  $(this).closest("tr").html("");
+});

@@ -19,10 +19,11 @@
 
 			- if current_user
 				.btn-group.btn-group-xs.pull-right
-					= link_to 'Reply', new_question_answer_comment_path(answer.question, answer), :class => "btn btn-sm btn-default"
+					= link_to 'Reply', new_question_answer_comment_path(answer.question, answer), :class => "btn btn-sm btn-default reply", :remote => true
 					- if current_user.id == answer.user_id
 						= link_to "Delete Answer", question_answer_path(answer.question, answer), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-sm btn-danger"
 				%br
+	%tr.comment-form
 	%tr
 		%td
 		%td

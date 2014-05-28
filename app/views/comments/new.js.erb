@@ -1,0 +1,4 @@
+$(".reply").bind('ajax:success', function(){
+  // $(this).closest("tr").next().html("<td></td><td><form></form></td>");
+  $(this).closest("tr").next().html("<td></td><td><%= escape_javascript(render 'comments/form') %></td>");
+});

@@ -11,4 +11,4 @@
       %strong -#{comment.name}
 
       - if current_user && current_user.id == comment.user_id
-        = link_to "Delete", [comment.answer, comment], :confirm => "Are you sure?", :method => :delete
+        = link_to "Delete", [comment.answer, comment], :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "delete_comment"

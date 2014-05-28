@@ -11,7 +11,7 @@
         %span.label.label-default
           %span.points
             = total_points @question.id, "Question"
-          - if !current_user.nil?
+          - if current_user
             = link_to '+', votes_up_path(:type => "Question", :id => @question.id, :question_id => @question.id), :remote => true, :class => "up_vote"
             = link_to '-', votes_down_path(:type => "Question", :id => @question.id, :question_id => @question.id), :remote => true, :class => "down_vote"
     %td
@@ -23,7 +23,7 @@
           on 
           = @question.created_at
 
-      - if !current_user.nil? && current_user.id == @question.user_id
+      - if current_user && current_user.id == @question.user_id
         %p.text-right
           = link_to 'Edit Question', edit_question_path(@question)
           |
@@ -32,7 +32,7 @@
 %h3
   Answers:
 = render @question.answers
-- if !current_user.nil?
+- if current_user
   = button_to 'Submit an Answer', new_question_answer_path(@question), :method => :get, :class => "btn btn-success center-block"
 
 %br

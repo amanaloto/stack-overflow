@@ -26,8 +26,4 @@ class CommentsController < ApplicationController
 
 		redirect_to question_path(@question)
 	end
-
-	def show
-		render comment
-	end
 end

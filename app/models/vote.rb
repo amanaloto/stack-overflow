@@ -24,4 +24,6 @@ class Vote < ActiveRecord::Base
 
     @vote
   end
+
+  private_class_method :create_vote
 end

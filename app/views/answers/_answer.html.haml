@@ -5,7 +5,7 @@
 				%span.label.label-default
 					%span.points
 						= total_points answer.id, "Answer"
-					- if !current_user.nil?
+					- if current_user
 						= link_to '+', votes_up_path(:type => "Answer", :id => answer.id, :question_id => @question.id), :remote => true, :class => "up_vote"
 						= link_to '-', votes_down_path(:type => "Answer", :id => answer.id, :question_id => @question.id), :remote => true, :class => "down_vote"
 		%td
@@ -17,7 +17,7 @@
 					on 
 					= answer.created_at
 
-			- if !current_user.nil?
+			- if current_user
 				.btn-group.btn-group-xs.pull-right
 					= link_to 'Reply', new_question_answer_comment_path(answer.question, answer), :class => "btn btn-sm btn-default"
 					- if current_user.id == answer.user_id

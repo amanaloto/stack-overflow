@@ -81,12 +81,4 @@ class QuestionsController < ApplicationController
       format.js { render :layout => false}
     end
   end
-
-  #Helper method to calculate the total points of a question
-  def question_total_points(id)
-    @total = 0
-    VoteQuestion.where(:question_id => @id).each {|vote| @total += vote.points}
-    return @total
-  end
-  helper_method :question_total_points
 end

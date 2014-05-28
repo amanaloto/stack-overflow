@@ -1,9 +1,10 @@
 %tr
   %td.col-md-1
-    %strong= total_points comment.id, "Comment"
+    %span.points
+      = total_points comment.id, "Comment"
     - if !current_user.nil?
-      %strong= link_to '+', votes_up_path(:type => "Comment", :id => comment.id, :question_id => @question.id)
-      %strong= link_to '-', votes_down_path(:type => "Comment", :id => comment.id, :question_id => @question.id)
+      = link_to '+', votes_up_path(:type => "Comment", :id => comment.id, :question_id => @question.id), :remote => true, :class => "up_vote"
+      = link_to '-', votes_down_path(:type => "Comment", :id => comment.id, :question_id => @question.id), :remote => true, :class => "down_vote"
   %td
     %small
       "#{comment.comment}"

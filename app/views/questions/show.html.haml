@@ -9,13 +9,12 @@
   .panel.panel-default
     .panel-body
       .col-md-2
-        %h4
-          %span.label.label-default
-            %span.points
-              = total_points @question.id, "Question"
-            - if current_user
-              = link_to '+', votes_up_path(:type => "Question", :id => @question.id), :remote => true, :class => "up_vote"
-              = link_to '-', votes_down_path(:type => "Question", :id => @question.id), :remote => true, :class => "down_vote"
+        %span.label.label-default
+          %span.points
+            = total_points @question.id, "Question"
+          - if current_user
+            = link_to '+', votes_up_path(:type => "Question", :id => @question.id), :remote => true, :class => "up_vote"
+            = link_to '-', votes_down_path(:type => "Question", :id => @question.id), :remote => true, :class => "down_vote"
 
       .col-md-10
         = @question.question

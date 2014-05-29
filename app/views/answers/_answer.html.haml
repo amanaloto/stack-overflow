@@ -1,36 +1,35 @@
 %span#answer_row
-	.row
-		.panel.panel-default
-			.panel-body
-				.col-md-2
-					%h4
-						%span.label.label-default
-							%span.points
-								= total_points answer.id, "Answer"
-							- if current_user
-								= link_to '+', votes_up_path(:type => "Answer", :id => answer.id), :remote => true, :class => "up_vote"
-								= link_to '-', votes_down_path(:type => "Answer", :id => answer.id), :remote => true, :class => "down_vote"
+  .row
+    .panel.panel-default
+      .panel-body
+        .col-md-2
+          %span.label.label-default
+            %span.points
+              = total_points answer.id, "Answer"
+            - if current_user
+              = link_to '+', votes_up_path(:type => "Answer", :id => answer.id), :remote => true, :class => "up_vote"
+              = link_to '-', votes_down_path(:type => "Answer", :id => answer.id), :remote => true, :class => "down_vote"
 
-				.col-md-10
-					= answer.answer
+        .col-md-10
+          = answer.answer
 
-					- if current_user
-						.btn-group.btn-group-xs.pull-right
-							= link_to 'Reply', new_question_answer_comment_path(answer.question, answer), :class => "btn btn-sm btn-default reply", :remote => true
-							- if current_user.id == answer.user_id
-								= link_to "Delete Answer", question_answer_path(answer.question, answer), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-sm btn-danger delete_answer", :remote => true
-						%br
-	%p.text-right
-		%small
-			Answered by:
-			%strong= answer.name
-			on 
-			= answer.created_at
+          - if current_user
+            .btn-group.btn-group-xs.pull-right
+              = link_to 'Reply', new_question_answer_comment_path(answer.question, answer), :class => "btn btn-sm btn-default reply", :remote => true
+              - if current_user.id == answer.user_id
+                = link_to "Delete Answer", question_answer_path(answer.question, answer), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-sm btn-danger delete_answer", :remote => true
 
-	.row
-		.col-md-10.col-md-offset-2.comment-form
-	.row
-		.col-md-10.col-md-offset-2
-			.panel.panel-comments
-				.panel-body-comments
-					= render answer.comments
+  %p.text-right
+    %small
+      Answered by:
+      %strong= answer.name
+      on 
+      = answer.created_at
+
+  .row
+    .col-md-10.col-md-offset-2.comment-form
+  .row
+    .col-md-10.col-md-offset-2
+      .panel.panel-comments
+        .panel-body-comments
+          = render answer.comments

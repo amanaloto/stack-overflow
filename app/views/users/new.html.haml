@@ -1,26 +1,26 @@
 .panel.panel-default
-	.panel-heading
-		%h3.panel-title
-			%strong Sign Up Form
+  .panel-heading
+    %h3.panel-title
+      %strong Sign Up Form
 
-	.panel-body
-		= form_for @user do |f|
-			- if @user.errors.any?
-				#error_explanation
-					%h2
-						Form is invalid
-					%ul
-						- for message in @user.errors.full_messages
-							%li= message
+  .panel-body
+    = form_for @user do |f|
+      - if @user.errors.any?
+        #error_explanation
+          %h2
+            Form is invalid
+          %ul
+            - for message in @user.errors.full_messages
+              %li= message
 
-			.form-group
-				= f.label :email
-				= f.text_field :email, {:class => "form-control", :placeholder => "dummy@email.com"}
-			.form-group
-				= f.label :password
-				= f.password_field :password, {:class => "form-control"}
-			.form-group
-				= f.label :password_confirmation
-				= f.password_field :password_confirmation, {:class => "form-control"}
-			.form-actions
-				= f.submit :class => "btn btn-sm btn-success"
+      .form-group
+        = f.label :email
+        = f.text_field :email, {:class => "form-control", :placeholder => "dummy@email.com"}
+      .form-group
+        = f.label :password
+        = f.password_field :password, {:class => "form-control"}
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, {:class => "form-control"}
+      .form-actions
+        = f.submit :class => "btn btn-sm btn-success"

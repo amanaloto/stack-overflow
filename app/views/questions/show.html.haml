@@ -4,30 +4,34 @@
 
 %h2
   %strong= @question.title
-%table.table
-  %tr
-    %td.col-sm-1
-      %h4
-        %span.label.label-default
-          %span.points
-            = total_points @question.id, "Question"
-          - if current_user
-            = link_to '+', votes_up_path(:type => "Question", :id => @question.id), :remote => true, :class => "up_vote"
-            = link_to '-', votes_down_path(:type => "Question", :id => @question.id), :remote => true, :class => "down_vote"
-    %td
-      = @question.question
-      %p.text-right
-        %small
-          Asked by:
-          %strong= @question.name
-          on 
-          = @question.created_at
+
+.row
+  .panel.panel-default
+    .panel-body
+      .col-md-2
+        %h4
+          %span.label.label-default
+            %span.points
+              = total_points @question.id, "Question"
+            - if current_user
+              = link_to '+', votes_up_path(:type => "Question", :id => @question.id), :remote => true, :class => "up_vote"
+              = link_to '-', votes_down_path(:type => "Question", :id => @question.id), :remote => true, :class => "down_vote"
+
+      .col-md-10
+        = @question.question
 
       - if current_user && current_user.id == @question.user_id
         %p.text-right
           = link_to 'Edit Question', edit_question_path(@question)
           |
           = link_to 'Delete', question_path(@question), :confirm => "Are you sure?", :method => :delete
+
+%p.text-right
+  %small
+    Asked by:
+    %strong= @question.name
+    on 
+    = @question.created_at
 
 %h3
   Answers:

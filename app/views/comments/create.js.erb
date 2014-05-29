@@ -1,5 +1,5 @@
 $("#new_comment").one('ajax:success', function(){
-  var $comments = $(this).parents(".table:first").find(".table-condensed");
+  var $comments = $(this).parents("#answer_row").find(".panel-body-comments");
   $comments.html("<%= escape_javascript(render @answer.comments) %>");
-  $(this).closest("tr").html("");
+  $(this).parents(".row").html("");
 });

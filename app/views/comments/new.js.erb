@@ -1,5 +1,4 @@
 $(".reply").one('ajax:success', function(){
-  var $commentForm = $(this).parents('.table:first').find('.comment-form:first');
-  $commentForm.html("<td></td> \
-    <td><%= j(render 'comments/form') %></td>");
+  var $commentForm = $(this).parents('#answer_row').find('.comment-form:first');
+  $commentForm.html("<%= escape_javascript(render 'comments/form') %>");
 });

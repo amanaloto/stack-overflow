@@ -1,11 +1,12 @@
-%tr
-  %td.col-md-1
+.row
+  .col-md-2
     %span.points
       = total_points comment.id, "Comment"
     - if current_user
       = link_to '+', votes_up_path(:type => "Comment", :id => comment.id), :remote => true, :class => "up_vote"
       = link_to '-', votes_down_path(:type => "Comment", :id => comment.id), :remote => true, :class => "down_vote"
-  %td
+
+  .col-md-10
     %small
       "#{comment.comment}"
       %strong -#{comment.name}

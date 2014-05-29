@@ -13,6 +13,3 @@
 // = require jquery
 // = require jquery_ujs
 // = require_tree .
-// $('.btn btn-sm btn-danger').bind('ajax:success', function() {
-//   $(this).closest('tr').fadeOut();
-// });

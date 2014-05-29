@@ -6,8 +6,8 @@
 					%span.points
 						= total_points answer.id, "Answer"
 					- if current_user
-						= link_to '+', votes_up_path(:type => "Answer", :id => answer.id, :question_id => @question.id), :remote => true, :class => "up_vote"
-						= link_to '-', votes_down_path(:type => "Answer", :id => answer.id, :question_id => @question.id), :remote => true, :class => "down_vote"
+						= link_to '+', votes_up_path(:type => "Answer", :id => answer.id), :remote => true, :class => "up_vote"
+						= link_to '-', votes_down_path(:type => "Answer", :id => answer.id), :remote => true, :class => "down_vote"
 		%td
 			= answer.answer
 			%p.text-right
@@ -21,7 +21,7 @@
 				.btn-group.btn-group-xs.pull-right
 					= link_to 'Reply', new_question_answer_comment_path(answer.question, answer), :class => "btn btn-sm btn-default reply", :remote => true
 					- if current_user.id == answer.user_id
-						= link_to "Delete Answer", question_answer_path(answer.question, answer), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-sm btn-danger"
+						= link_to "Delete Answer", question_answer_path(answer.question, answer), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-sm btn-danger delete_answer", :remote => true
 				%br
 	%tr.comment-form
 	%tr

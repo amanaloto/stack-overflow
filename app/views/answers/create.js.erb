@@ -1,0 +1,6 @@
+$("#new_answer").one('ajax:success', function(){
+  var $ans_form = $(this).closest(".answer_form");
+  $ans_form.prev().html("<%= escape_javascript(render @question.answers) %>");
+  $ans_form.html("");
+  $(".submit_answer").show();
+});

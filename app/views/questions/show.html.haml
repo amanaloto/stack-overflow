@@ -12,8 +12,8 @@
           %span.points
             = total_points @question.id, "Question"
           - if current_user
-            = link_to '+', votes_up_path(:type => "Question", :id => @question.id, :question_id => @question.id), :remote => true, :class => "up_vote"
-            = link_to '-', votes_down_path(:type => "Question", :id => @question.id, :question_id => @question.id), :remote => true, :class => "down_vote"
+            = link_to '+', votes_up_path(:type => "Question", :id => @question.id), :remote => true, :class => "up_vote"
+            = link_to '-', votes_down_path(:type => "Question", :id => @question.id), :remote => true, :class => "down_vote"
     %td
       = @question.question
       %p.text-right
@@ -31,8 +31,11 @@
 
 %h3
   Answers:
-= render @question.answers
+.answers
+  = render @question.answers
+.answer_form
 - if current_user
-  = button_to 'Submit an Answer', new_question_answer_path(@question), :method => :get, :class => "btn btn-success center-block"
+  .col-md-3.col-md-offset-4
+    = link_to 'Submit an Answer', new_question_answer_path(@question), :class => "btn btn-success submit_answer", :remote => true
 
 %br

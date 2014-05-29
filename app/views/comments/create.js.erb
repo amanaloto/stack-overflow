@@ -1,4 +1,5 @@
-$("#new_comment").bind('ajax:success', function(){
-  $(this).closest("tr").next().find(".table-condensed").html("<%= escape_javascript(render Answer.find(params[:answer_id]).comments) %>");
+$("#new_comment").one('ajax:success', function(){
+  var $comments = $(this).parents(".table:first").find(".table-condensed");
+  $comments.html("<%= escape_javascript(render @answer.comments) %>");
   $(this).closest("tr").html("");
 });

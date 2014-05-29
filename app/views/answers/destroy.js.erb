@@ -1,0 +1,5 @@
+$(".delete_answer").one('ajax:success', function(){
+  $(this).closest("table").fadeOut("slow", function(){
+    $(this).remove();
+  });
+});

@@ -13,7 +13,7 @@
   - @questions.each do |question|
     %tr
       %td= total_points question.id, "Question"
-      %td= question.name
+      %td= link_to question.name, User.find(question.user_id)
       %td= link_to question.title, question
       %td
         - if current_user && current_user.id == question.user_id

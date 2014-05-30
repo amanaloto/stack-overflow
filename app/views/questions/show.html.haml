@@ -28,7 +28,8 @@
 %p.text-right
   %small
     Asked by:
-    %strong= @question.name
+    %strong
+      = link_to @question.name, User.find(@question.user_id)
     on 
     = @question.created_at
 

@@ -7,7 +7,9 @@ class CommentsController < ApplicationController
 
   def create
     @answer = Answer.find(params[:answer_id])
-    @comment = @answer.comments.create(params[:comment])
+    @comment = @answer.comments.new(params[:comment])
+    @comment.comment = parse_tags @comment.comment
+    @comment.save
   end
 
   def destroy

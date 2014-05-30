@@ -11,7 +11,7 @@
               = link_to '-', votes_down_path(:type => "Answer", :id => answer.id), :remote => true, :class => "down_vote"
 
         .col-md-10
-          = answer.answer
+          = answer.answer.html_safe
 
           - if current_user
             .btn-group.btn-group-xs.pull-right
@@ -22,7 +22,8 @@
   %p.text-right
     %small
       Answered by:
-      %strong= answer.name
+      %strong
+        = link_to answer.name, User.find(answer.user_id)
       on 
       = answer.created_at
 
@@ -30,6 +31,7 @@
     .col-md-10.col-md-offset-2.comment-form
   .row
     .col-md-10.col-md-offset-2
-      %strong Replies:
+      - if answer.comments.present?
+        %strong Replies:
       %ul.list-group
         = render answer.comments

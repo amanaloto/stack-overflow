@@ -41,11 +41,11 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(params[:question])
+    @question.question = parse_tags @question.question
 
     respond_to do |format|
       if @question.save
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.js
       else
         format.html { render action: "new" }
       end

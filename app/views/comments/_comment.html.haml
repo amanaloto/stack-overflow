@@ -1,15 +1,13 @@
-.row
-  .col-md-2
-    %span.points
-      = total_points comment.id, "Comment"
-    - if current_user
-      = link_to '+', votes_up_path(:type => "Comment", :id => comment.id), :remote => true, :class => "up_vote"
-      = link_to '-', votes_down_path(:type => "Comment", :id => comment.id), :remote => true, :class => "down_vote"
+%li.list-group-item
+  %span.points
+    = total_points comment.id, "Comment"
+  - if current_user
+    = link_to '+', votes_up_path(:type => "Comment", :id => comment.id), :remote => true, :class => "up_vote"
+    = link_to '-', votes_down_path(:type => "Comment", :id => comment.id), :remote => true, :class => "down_vote"
 
-  .col-md-10
-    %small
-      "#{comment.comment}"
-      %strong -#{comment.name}
+  %small
+    "#{comment.comment.html_safe}"
+    %strong -#{comment.name}
 
-      - if current_user && current_user.id == comment.user_id
-        = link_to "Delete", [comment.answer, comment], :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "delete_comment"
+    - if current_user && current_user.id == comment.user_id
+      = link_to "Delete", [comment.answer, comment], :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "delete_comment"

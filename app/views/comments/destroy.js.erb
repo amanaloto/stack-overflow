@@ -1,5 +1,5 @@
 $('.delete_comment').one('ajax:success', function() {
-  $(this).closest('.row').fadeOut('slow', function(){
+  $(this).closest('.list-group-item').fadeOut('slow', function(){
     $(this).remove();
   });
 });

@@ -17,7 +17,7 @@
             = link_to '-', votes_down_path(:type => "Question", :id => @question.id), :remote => true, :class => "down_vote"
 
       .col-md-10
-        = @question.question
+        = @question.question.html_safe
 
       - if current_user && current_user.id == @question.user_id
         %p.text-right

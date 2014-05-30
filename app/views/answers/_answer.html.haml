@@ -30,6 +30,6 @@
     .col-md-10.col-md-offset-2.comment-form
   .row
     .col-md-10.col-md-offset-2
-      .panel.panel-comments
-        .panel-body-comments
-          = render answer.comments
+      %strong Replies:
+      %ul.list-group
+        = render answer.comments

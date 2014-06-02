@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :votes, :dependent => :destroy
 
+  validates :email, :uniqueness => true
   validates_presence_of :email, :on => :create
   validates_presence_of :password, :on => :create
 end

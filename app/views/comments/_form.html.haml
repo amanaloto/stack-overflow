@@ -6,7 +6,10 @@
   .field
     = f.label "Post a reply:"
     %br
-    = f.cktext_area :comment, {:rows => "4", :cols => "60", :ckeditor => {:toolbar => "CustomToolbar"}}
+    = f.cktext_area :comment, 
+      {:rows => "4", 
+        :cols => "60", 
+      :ckeditor => {:toolbar => "CustomToolbar"}}
     %br
   .actions
     = f.submit "Send!"

@@ -6,7 +6,10 @@
   .field
     = f.label "Answer"
     %br/
-    = f.cktext_area :answer, {:rows => "7", :cols => "75", :ckeditor => {:toolbar => 'CustomToolbar'}}
+    = f.cktext_area :answer, 
+      {:rows => "7", 
+        :cols => "75", 
+        :ckeditor => {:toolbar => 'CustomToolbar'}}
     %br/
   .actions
     = f.submit "Submit"

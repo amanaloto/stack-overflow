@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @answer = Answer.find(params[:answer_id])
-    @comment = Comment.find(params[:id]) #not sure if this is safe
+    @comment = Comment.find(params[:id])
     @comment.destroy
   end
 end

@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
     @questions = Question.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @questions }
     end
   end
@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @question }
     end
   end
@@ -27,21 +27,16 @@ class QuestionsController < ApplicationController
     @question = Question.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @question }
     end
-  end
-
-  # GET /questions/1/edit
-  def edit
-    @question = Question.find(params[:id])
   end
 
   # POST /questions
   # POST /questions.json
   def create
     @question = Question.new(params[:question])
-    @question.question = parse_tags @question.question
+    # @question.question = parse_tags @question.question
 
     respond_to do |format|
       if @question.save
@@ -50,6 +45,11 @@ class QuestionsController < ApplicationController
         format.html { render action: "new" }
       end
     end
+  end
+
+  # GET /questions/1/edit
+  def edit
+    @question = Question.find(params[:id])
   end
 
   # PUT /questions/1

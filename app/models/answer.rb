@@ -8,4 +8,6 @@ class Answer < ActiveRecord::Base
   has_many :votes, :as => :votable, :dependent => :destroy
   
   validates_presence_of :answer, :on => :create
+
+  paginates_per 7
 end

@@ -46,8 +46,9 @@
 
 %h3
   Answers:
+=paginate @answers
 .answers
-  = render @question.answers
+  = render @answers
 .answer_form
 - if current_user
   .col-md-3.col-md-offset-4

@@ -7,4 +7,6 @@ class Comment < ActiveRecord::Base
   has_many :votes, :as => :votable, :dependent => :destroy
   
   validates_presence_of :comment, :on => :create
+
+  paginates_per 5
 end

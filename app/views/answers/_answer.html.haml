@@ -54,4 +54,5 @@
       - if answer.comments.present?
         %strong Replies:
       %ul.list-group
-        = render answer.comments
+        = render answer.comments.first(5)
+    = link_to 'See more', answer_comments_path(answer), :remote => true, :id => 'expand_comments'

@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+  def index
+    @answer = Answer.find(params[:answer_id])
+  end
+
   def new
     @question = Question.find(params[:question_id])
     @answer = @question.answers.find(params[:answer_id])

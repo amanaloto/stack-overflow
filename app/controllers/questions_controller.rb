@@ -15,6 +15,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @question = Question.find(params[:id])
+    @answers = @question.answers.page params[:page]
 
     respond_to do |format|
       format.html
@@ -83,7 +84,7 @@ class QuestionsController < ApplicationController
   end
 
   def search
-    @questions = Question.search_full_text(params[:search])
+    @questions = (Question.search_full_text params[:search]).page params[:page]
 
     render :action => "index"
   end

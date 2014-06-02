@@ -1,4 +1,6 @@
 class Question < ActiveRecord::Base
+  include PgSearch
+
   attr_accessible :name, :points, :question, :title, :user_id
 
   belongs_to :user
@@ -8,4 +10,11 @@ class Question < ActiveRecord::Base
 
   validates_presence_of :title, :on => :create
   validates_presence_of :question, :on => :create
+
+  pg_search_scope :search_full_text, :against => {
+    :title => 'A',
+    :question => 'B',
+    :name => 'C'
+  }
+  
 end

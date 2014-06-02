@@ -7,6 +7,8 @@ StackOverflow::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
 
+  get "question_search" => "questions#search", :as => "question_search"
+
   resources :sessions
   resources :users
 

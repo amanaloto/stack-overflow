@@ -2,7 +2,8 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    # @questions = Question.all
+    @questions = Question.order(:id).page params[:page]
 
     respond_to do |format|
       format.html
@@ -79,5 +80,11 @@ class QuestionsController < ApplicationController
       format.json { head :no_content }
       format.js { render :layout => false}
     end
+  end
+
+  def search
+    @questions = Question.search_full_text(params[:search])
+
+    render :action => "index"
   end
 end

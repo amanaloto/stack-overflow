@@ -1,4 +1,5 @@
 //expand comment section
 $('#expand_comments').one('ajax:success', function(){
-  $(this).prev().find('.list-group').html('<%= escape_javascript( render @answer.comments) %>');
+  var $comments_list = $(this).parents('.row').find('.list-group');
+  $comments_list.html('<%= escape_javascript( render @answer.comments) %>');
 });

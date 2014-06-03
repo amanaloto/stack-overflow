@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Logged in successfully!"
       redirect_to questions_path
     else
-      flash.now.alert = "Invalid email or password!"
+      flash.now[:error] = "Invalid email or password!"
       render "new"
     end
   end

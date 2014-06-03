@@ -1,6 +1,11 @@
-- flash.each do 
-  .alert.alert-success
-    = flash[:notice]
+- flash.each do
+  - if flash[:notice]
+    .alert.alert-success
+      = flash[:notice]
+  - else
+    .alert.alert-danger
+      = flash[:error]
+      
 .panel.panel-default
   .panel-heading
     %h3.panel-title

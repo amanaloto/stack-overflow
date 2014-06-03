@@ -20,8 +20,7 @@
         - if current_user
           %p.navbar-text
             Logged in as
-            %strong
-              = link_to current_user.email, user_path(current_user)
+            %strong= link_to current_user.email, user_path(current_user)
             = link_to "Log out", log_out_path
         - else
           %p.navbar-text
@@ -29,16 +28,20 @@
               = link_to "Sign up", sign_up_path
             %li
               = link_to "Log in", log_in_path
-      .col-sm-3.col-md-3
-        = form_tag question_search_path, 
-                  :method => :get, 
-                  :class => 'navbar-form', 
-                  :role => 'search' do
-          = text_field_tag :search, 
-            params[:search], 
-            {:class => 'search-query',
-              :placeholder => 'Search'}
 
+      .col-md-3
+        = form_tag question_search_path,
+                  :method => :get,
+                  :class => 'navbar-form',
+                  :role => 'search' do
+          .input-group
+            = text_field_tag :search,
+              params[:search],
+              {:class => 'form-control',
+                :placeholder => 'Search'}
+            .input-group-btn
+              = button_tag :type => 'submit', :class => 'btn btn-primary' do
+                %span.glyphicon.glyphicon-star
 
   .container
     .col-md-7.col-md-offset-1

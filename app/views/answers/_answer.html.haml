@@ -60,6 +60,6 @@
               .row
                 .col-md-3.col-md-offset-5
                   = link_to '&bull; &bull; &bull;'.html_safe, 
-                    answer_comments_path(answer), 
+                    answer_comments_path(answer),
                     :remote => true, 
-                    :id => 'expand_comments'
+                    :class => 'expand_comments'

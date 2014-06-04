@@ -1,4 +1,5 @@
-$(".submit_answer").one('ajax:success', function(){
+$(".submit_answer").off();
+$(".submit_answer").on('ajax:success', function(){
   $(".answer_form").html("<%= escape_javascript(render 'answers/form') %>");
   $(this).hide();
 });

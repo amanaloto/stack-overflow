@@ -1,3 +1,4 @@
-$(".up_vote").one('ajax:success', function(){
+$(".up_vote").off();
+$(".up_vote").on('ajax:success', function(){
   $(this).prev().html("<%= @total %>");
 });

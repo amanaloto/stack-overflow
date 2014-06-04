@@ -7,7 +7,6 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.new(params[:answer])
-    @answer.answer = parse_tags @answer.answer
     @answer.save
   end
 

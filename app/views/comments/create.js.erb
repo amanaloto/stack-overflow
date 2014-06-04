@@ -1,4 +1,5 @@
-$("#new_comment").one('ajax:success', function(){
+$('#new_comment').off();
+$("#new_comment").on('ajax:success', function(){
   var $comments = $(this).parents("#answer_row").find(".list-group");
   $comments.html("<%= escape_javascript(render @answer.comments) %>");
   $(this).parents(".comment-form").html("");

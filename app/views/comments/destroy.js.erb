@@ -5,9 +5,13 @@ $('.js-delete-comment[data-comment-id=<%= @comment.id %>]')
         $(this).parents('.list-group').html('<%= escape_javascript(render @answer.comments.first(5)) %>'))
       .then( 
         function(){
-          // if(<%= @count %>){
-            $(this).append('<%= escape_javascript(render :partial => "comments/expand",:locals => {:answer => @answer, :offset => 5, :count => @count}) %>');
-          // }
+          if(<%= @count %>){
+            $(this).append('<%= escape_javascript(\
+                      render :partial => "comments/expand",\
+                      :locals => {:answer => @answer,\
+                                  :offset => 5, \
+                                  :count => @count}) %>');
+          }
         }
       );
 

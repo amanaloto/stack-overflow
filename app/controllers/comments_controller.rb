@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
   def index
     @answer = Answer.find(params[:answer_id])
+    @comments = @answer.comments.limit(5).offset(params[:offset])
+    @offset = params[:offset].to_i + 5
+    @count = @answer.comments.limit(5).offset(@offset).count
   end
 
   def new
@@ -18,5 +21,6 @@ class CommentsController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
+    @count = @answer.comments.limit(5).offset(5).count
   end
 end

@@ -86,6 +86,10 @@ class QuestionsController < ApplicationController
   def search
     @questions = (Question.search_full_text params[:search]).page params[:page]
 
-    render :action => "index"
+    if @questions.count == 1
+      redirect_to @questions.first
+    else
+      render :action => "index"
+    end
   end
 end

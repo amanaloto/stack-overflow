@@ -1,5 +1,16 @@
-$(".expand_comments[data-answer-id=<%= @answer.id %>]")
+$(".js-expand-comments[data-answer-id=<%= @answer.id %>]")
 .one('ajax:success', function(){
   var $comments_list = $(this).parents('.list-group:first');
-  $comments_list.html('<%= escape_javascript( render @answer.comments) %>');
+  $(this).parents('.list-group-item:first').remove();
+  $.when($comments_list.append('<%= escape_javascript( render @comments) %>'))
+    .then( 
+      function(){
+        if(<%= @count %>){
+          $comments_list.append('<%= escape_javascript( \
+            render :partial => "comments/expand", \
+                    :locals => {:answer => @answer, \
+                                :offset => @offset,
+                                :count => @count}) %>')
+        }
+    });
 });

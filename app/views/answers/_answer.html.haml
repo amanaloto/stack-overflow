@@ -62,11 +62,7 @@
       %ul.list-group
         = render answer.comments.first(5)
         - if answer.comments.count > 5
-          %li.list-group-item
-            .row
-              .col-md-3.col-md-offset-5
-                = link_to '&bull; &bull; &bull;'.html_safe, 
-                  answer_comments_path(answer),
-                  :remote => true, 
-                  :class => 'expand_comments',
-                  :data => {:answer_id => answer.id}
+          =render :partial => 'comments/expand', 
+            :locals => {:answer => answer, 
+                        :offset => 5,
+                        :count => answer.comments.limit(5).offset(5).count}

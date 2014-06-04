@@ -1,0 +1,9 @@
+%li.list-group-item
+  .row
+    .col-md-3.col-md-offset-5
+      = link_to 'Show next ' + count.to_s, 
+        answer_comments_path(answer,
+                        :offset => offset),
+        :remote => true, 
+        :class => 'js-expand-comments',
+        :data => {:answer_id => answer.id}

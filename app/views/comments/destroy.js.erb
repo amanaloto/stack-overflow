@@ -1,6 +1,5 @@
-$('.delete_comment').off();
-$('.delete_comment').on('ajax:success', function() {
-  $(this).closest('.list-group-item').fadeOut('slow', function(){
+$('.js-delete-comment[data-comment-id=<%= @comment.id %>]').one('ajax:success', function() {
+  $(this).closest('.list-group-item').fadeOut('fast', function(){
     $(this).remove();
   });
 });

@@ -1,6 +1,5 @@
-$('.delete_answer').off();
-$(".delete_answer").on('ajax:success', function(){
-  $(this).parents("#answer_row").fadeOut("slow", function(){
+$(".js-delete-answer[data-answer-id=<%= @answer.id %>]").one('ajax:success', function(){
+  $(this).parents("#js-answer-row").fadeOut("slow", function(){
     $(this).remove();
   });
 });

@@ -1,11 +1,13 @@
 class VotesController < ApplicationController
   def up
-    Vote.up_vote params[:id], params[:type], current_user
-    @total = total_points params[:id], params[:type]
+    @id, @type = params[:id], params[:type]
+    Vote.up_vote @id, @type, current_user
+    @total = total_points @id, @type
   end
 
   def down
-    Vote.down_vote params[:id], params[:type], current_user
-    @total = total_points params[:id], params[:type]
+    @id, @type = params[:id], params[:type]
+    Vote.down_vote @id, @type, current_user
+    @total = total_points @id, @type
   end
 end

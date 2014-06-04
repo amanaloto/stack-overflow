@@ -1,5 +1,4 @@
-$(".reply").off();
-$(".reply").on('ajax:success', function(){
-  var $commentForm = $(this).parents('#answer_row').find('.comment-form:first');
+$(".js-reply[data-answer-id=<%= @answer.id %>]").one('ajax:success', function(){
+  var $commentForm = $(this).parents('#js-answer-row').find('.js-comment-form:first');
   $commentForm.html("<%= escape_javascript(render 'comments/form') %>");
 });

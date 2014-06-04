@@ -1,4 +1,4 @@
-%span#answer_row
+%span#js-answer-row
   .row
     .panel.panel-default
       .panel-body
@@ -11,13 +11,17 @@
                 votes_up_path(:type => "Answer", 
                               :id => answer.id), 
                 :remote => true, 
-                :class => "up_vote"
+                :class => "js-up-vote",
+                :data => {:id => answer.id,
+                          :votable_type => "Answer"}
 
               = link_to '-', 
                 votes_down_path(:type => "Answer", 
                                 :id => answer.id), 
-                :remote => true, 
-                :class => "down_vote"
+                :remote => true,
+                :class => "js-down-vote",
+                :data => {:id => answer.id,
+                          :votable_type => "Answer"}
 
         .col-md-10
           = (parse_tags answer.answer).html_safe
@@ -27,8 +31,9 @@
               = link_to 'Reply', 
                 new_question_answer_comment_path(answer.question, 
                                                   answer), 
-                :class => "btn btn-sm btn-default reply", 
-                :remote => true
+                :remote => true,
+                :class => "btn btn-sm btn-default js-reply",
+                :data => {:answer_id => answer.id}
                 
               - if current_user.id == answer.user_id
                 = link_to "Delete Answer", 
@@ -36,8 +41,9 @@
                                         answer), 
                   :confirm => "Are you sure?", 
                   :method => :delete, 
-                  :class => "btn btn-sm btn-danger delete_answer", 
-                  :remote => true
+                  :remote => true,
+                  :class => "btn btn-sm btn-danger js-delete-answer",
+                  :data => {:answer_id => answer.id}
 
   %p.text-right
     %small
@@ -48,7 +54,7 @@
       = answer.created_at
 
   .row
-    .col-md-10.col-md-offset-2.comment-form
+    .col-md-10.col-md-offset-2.js-comment-form
   .row
     .col-md-10.col-md-offset-2
       - if answer.comments.present?
@@ -62,4 +68,5 @@
                 = link_to '&bull; &bull; &bull;'.html_safe, 
                   answer_comments_path(answer),
                   :remote => true, 
-                  :class => 'expand_comments'
+                  :class => 'expand_comments',
+                  :data => {:answer_id => answer.id}

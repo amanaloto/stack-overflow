@@ -1,5 +1,3 @@
-$(".down_vote").off();
-$(".down_vote").on('ajax:success', function(){
+$('.js-down-vote[data-id=<%= @id %>][data-votable-type=<%= @type %>]').one('ajax:success', function(){
   $(this).prev().prev().html("<%= @total %>");
-  alert('<%= params[:type] %>');
 });

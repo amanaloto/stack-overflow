@@ -17,12 +17,17 @@
               votes_up_path(:type => "Question", 
                             :id => @question.id), 
               :remote => true, 
-              :class => "up_vote"
+              :class => "js-up-vote",
+              :data => {:id => @question.id,
+                        :votable_type => "Question"}
+
             = link_to '-', 
               votes_down_path(:type => "Question", 
                               :id => @question.id), 
               :remote => true, 
-              :class => "down_vote"
+              :class => "js-down-vote",
+              :data => {:id => @question.id,
+                        :votable_type => "Question"}
 
       .col-md-10
         = (parse_tags @question.question).html_safe
@@ -49,12 +54,12 @@
 =paginate @answers
 .answers
   = render @answers
-.answer_form
+.js-answer-form
 - if current_user
   .col-md-3.col-md-offset-4
     = link_to 'Submit an Answer', 
-      new_question_answer_path(@question), 
-      :class => "btn btn-success submit_answer", 
-      :remote => true
+      new_question_answer_path(@question),
+      :remote => true,
+      :class => "btn btn-success js-submit-answer"
 
 %br

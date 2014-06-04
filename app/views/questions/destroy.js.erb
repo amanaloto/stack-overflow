@@ -1,4 +1,4 @@
-$('.delete_question').off();
-$('.delete_question').on('ajax:success', function(){
-  $(this).closest('tr').fadeOut('fast', function(){ $(this).remove(); });
+$('.js-delete-question[data-question-id=<%= @question.id%>]').
+one('ajax:success', function(){
+    $(this).closest('tr').fadeOut('fast', function(){ $(this).remove(); });
 });

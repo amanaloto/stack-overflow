@@ -1,6 +1,5 @@
-$('#new_comment').off();
-$("#new_comment").on('ajax:success', function(){
-  var $comments = $(this).parents("#answer_row").find(".list-group");
+$(".js-new-comment[data-answer-id=<%= @answer.id %>]").one('ajax:success', function(){
+  var $comments = $(this).parents("#js-answer-row").find(".list-group");
   $comments.html("<%= escape_javascript(render @answer.comments) %>");
-  $(this).parents(".comment-form").html("");
+  $(this).parents(".js-comment-form").html("");
 });

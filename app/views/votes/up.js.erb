@@ -1,4 +1,3 @@
-$(".up_vote").off();
-$(".up_vote").on('ajax:success', function(){
+$('.js-up-vote[data-id=<%= @id %>][data-votable-type=<%= @type %>]').one('ajax:success', function(){
   $(this).prev().html("<%= @total %>");
 });

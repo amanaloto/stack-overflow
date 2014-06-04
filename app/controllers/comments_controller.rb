@@ -4,8 +4,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @question = Question.find(params[:question_id])
-    @answer = @question.answers.find(params[:answer_id])
+    @answer = Answer.find(params[:answer_id])
     @comment = @answer.comments.new
   end
 

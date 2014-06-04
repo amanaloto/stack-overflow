@@ -23,9 +23,10 @@
           = link_to "Delete", 
             question, 
             :method => :delete, 
-            :data => {:confirm => "Are you sure?"}, 
+            :data => {:confirm => "Are you sure?", 
+                      :question_id => question.id}, 
             :remote => true, 
-            :class => "delete_question"
+            :class => "js-delete-question"
 
 %br/
 

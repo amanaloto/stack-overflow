@@ -1,4 +1,8 @@
-= form_for [@answer, @answer.comments.build], :remote => true do |f|
+= form_for [@answer, @answer.comments.build], 
+  :remote => true,
+  :html => {:class => 'js-new-comment', 
+  :data => {:answer_id => @answer.id},} do |f|
+
   .field
     = f.hidden_field :name, :value => current_user.email
   .field

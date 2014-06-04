@@ -8,13 +8,17 @@
           votes_up_path(:type => "Comment", 
                         :id => comment.id), 
           :remote => true, 
-          :class => "up_vote"
+          :class => "js-up-vote",
+          :data => {:id => comment.id,
+                    :votable_type => 'Comment'}
 
         = link_to '-', 
           votes_down_path(:type => "Comment", 
                           :id => comment.id), 
           :remote => true, 
-          :class => "down_vote"
+          :class => "js-down-vote",
+          :data => {:id => comment.id,
+                    :votable_type => 'Comment'}
 
     .col-md-10
       %small
@@ -27,4 +31,5 @@
             :confirm => "Are you sure?", 
             :method => :delete, 
             :remote => true, 
-            :class => "delete_comment"
+            :class => "js-delete-comment",
+            :data => {:comment_id => comment.id}

@@ -64,5 +64,5 @@
         - if answer.comments.count > 5
           =render :partial => 'comments/expand', 
             :locals => {:answer => answer, 
-                        :offset => 5,
-                        :count => answer.comments.limit(5).offset(5).count}
+                        :page => 2,
+                        :count => answer.comments.page(2).per(5).count}

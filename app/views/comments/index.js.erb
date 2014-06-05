@@ -9,7 +9,7 @@ $(".js-expand-comments[data-answer-id=<%= @answer.id %>]")
           $comments_list.append('<%= escape_javascript( \
             render :partial => "comments/expand", \
                     :locals => {:answer => @answer, \
-                                :offset => @offset,
+                                :page => @next_page,
                                 :count => @count}) %>')
         }
     });

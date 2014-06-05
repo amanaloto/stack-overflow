@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   def index
     @answer = Answer.find(params[:answer_id])
-    @comments = @answer.comments.limit(5).offset(params[:offset])
-    @offset = params[:offset].to_i + 5
-    @count = @answer.comments.limit(5).offset(@offset).count
+    @comments = @answer.comments.page(params[:page]).per(5)
+    @next_page = params[:page].to_i + 1
+    @count = @answer.comments.page(@next_page).per(5).count
   end
 
   def new

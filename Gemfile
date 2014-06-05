@@ -17,6 +17,13 @@ gem 'pg_search'
 
 gem 'kaminari'
 
+group :development, :test do
+  gem 'shoulda-matchers', '~> 2.6.1'
+  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'rspec-rails', '~> 3.0.1'
+  gem 'faker', '1.3.0'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

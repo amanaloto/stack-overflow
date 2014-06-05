@@ -18,11 +18,23 @@ describe User do
   it 'creates an up vote' do
     user = FactoryGirl.create(:user)
     question = FactoryGirl.create(:question, :name => user.email, :user_id => user.id)
-    expect(user.up_vote(question.id, 'Question')).to eq true
+
+    #This clears the DB for any existing record
+    vote = Vote.where(:votable_id => question.id, :votable_type => 'Question', :user_id => user.id).first
+    vote.destroy if vote
+
+    user.up_vote question.id, 'Question'
+    expect(user.votes.where(:votable_id => question.id, :votable_type => 'Question').first.points).to eq 1
   end
-  it 'creates an down vote' do
+  it 'creates a down vote' do
     user = FactoryGirl.create(:user)
     question = FactoryGirl.create(:question, :name => user.email, :user_id => user.id)
-    expect(user.down_vote(question.id, 'Question')).to eq true
+
+    #This clears the DB for any existing record
+    vote = Vote.where(:votable_id => question.id, :votable_type => 'Question', :user_id => user.id).first
+    vote.destroy if vote
+
+    user.down_vote question.id, 'Question'
+    expect(user.votes.where(:votable_id => question.id, :votable_type => 'Question').first.points).to eq -1
   end
 end

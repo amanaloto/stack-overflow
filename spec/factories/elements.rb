@@ -6,9 +6,21 @@ FactoryGirl.define do
     @random_page[n]
   end
 
+  sequence :random_id do
+    Faker::Number.digit
+  end
+
+  sequence :random_type do
+    ['Question', 'Answer', 'Comment'].shuffle[0]
+  end
+
   factory :user do |f|
     f.email { Faker::Internet.email }
     f.password { Faker::Internet.password }
+  end
+
+  factory :invalid_user, :parent => :user do |f|
+    f.email nil
   end
 
   factory :question do |f|

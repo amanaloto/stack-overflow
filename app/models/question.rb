@@ -8,8 +8,8 @@ class Question < ActiveRecord::Base
   has_many :answers, :dependent => :destroy
   has_many :votes, :as => :votable, :dependent => :destroy
 
-  validates_presence_of :title, :on => :create
-  validates_presence_of :question, :on => :create
+  validates_presence_of :title
+  validates_presence_of :question
 
   pg_search_scope :search_full_text, :against => {
     :title => 'A',

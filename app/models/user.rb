@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   has_many :votes, :dependent => :destroy
 
   validates :email, :uniqueness => true
-  validates_presence_of :email, :on => :create
-  validates_presence_of :password, :on => :create
+  validates_presence_of :email
+  validates_presence_of :password
 
   def up_vote id, type
     @vote = create_vote id, type

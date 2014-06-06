@@ -7,7 +7,7 @@ class Answer < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :votes, :as => :votable, :dependent => :destroy
   
-  validates_presence_of :answer, :on => :create
+  validates_presence_of :answer
 
   paginates_per 7
 end

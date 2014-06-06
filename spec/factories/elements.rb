@@ -1,6 +1,11 @@
 require 'faker'
 
 FactoryGirl.define do
+  sequence :random_page do |n|
+    @random_page ||= (1..10).to_a.shuffle
+    @random_page[n]
+  end
+
   factory :user do |f|
     f.email { Faker::Internet.email }
     f.password { Faker::Internet.password }
@@ -17,9 +22,17 @@ FactoryGirl.define do
     f.answer { Faker::Lorem.paragraph}
   end
 
+  factory :invalid_answer, :parent => :answer do |f|
+    f.answer nil
+  end
+
   factory :comment do |f|
     f.name { Faker::Internet.email}
     f.comment { Faker::Lorem.paragraph}
+  end
+
+  factory :invalid_comment, :parent => :comment do |f|
+    f.comment nil
   end
 
   factory :vote do |f|
